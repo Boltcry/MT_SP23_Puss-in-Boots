@@ -4,21 +4,27 @@ Servo servoInn;
 Servo servoGuard;
 Servo servoPrince;
 
-const int buttonPin1 = 2;
-const int buttonPin2;
-const int buttonPin3;
+const int buttonPin1 = 4;
+const int buttonPin2 = 3;
+const int buttonPin3 = 2;
 
-bool buttonStateCat1;
+bool buttonStateCat1 = false;
 bool buttonStateInnkeeper;
 bool buttonStateCat2;
 
 
 void setup() {
-  myServo.attach(9);
+  servoInn.attach(12);
+  servoGuard.attach(11);
+  servoPrince.attach(10);
   pinMode(buttonPin1, INPUT);
   pinMode(buttonPin2, INPUT);
   pinMode(buttonPin3, INPUT);
   Serial.begin(9600);
+
+  servoInn.write(90);
+  servoGuard.write(0);
+  servoPrince.write(0);
 
 }
 
@@ -27,14 +33,20 @@ void loop() {
   buttonStateInnkeeper = digitalRead(buttonPin2);
   buttonStateCat2 = digitalRead(buttonPin3);
 
+  Serial.print(buttonStateCat1);
+  Serial.print(" , ");
+  Serial.println(buttonStateInnkeeper);
   if(buttonStateCat1 && !buttonStateInnkeeper)
   {
-    servoInn.write(180);
+    servoInn.write(0);
   }
 
   if(buttonStateCat2)
   {
-    servoInn.write(180);
+    servoGuard.write(180);
+    delay(300);
+    servoPrince.write(180);
   }
+  
   
 }
