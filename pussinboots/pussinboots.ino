@@ -33,7 +33,7 @@ void loop() {
   buttonStateInnkeeper = digitalRead(buttonPin2);
   buttonStateCat2 = digitalRead(buttonPin3);
 
-  Serial.print(buttonStateCat1);
+  Serial.print(buttonStateCat2);
   Serial.print(" , ");
   Serial.println(buttonStateInnkeeper);
   if(buttonStateCat1 && !buttonStateInnkeeper)
@@ -44,7 +44,7 @@ void loop() {
   if(buttonStateCat2)
   {
     servoGuard.write(180);
-    delay(300);
+    delay(1000);
     servoPrince.write(180);
   }
   
